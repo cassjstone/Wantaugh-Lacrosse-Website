@@ -16,12 +16,12 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
     </head>
-    <!-- I'm a comment made by K!!!-->
+    
     <body id="page-top">
         <!-- Navigation-->
         <nav id="cassnav" class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
             <div class="container">
-            <a href="/index.html"> <img id= "wLOGOround" src="assets/img/indian.jpg"> </a>
+                <a href="/index.html"> <img id= "wLOGOround" src="assets/img/indian.jpg"> </a>
                 <button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     Menu
                     <i class="fas fa-bars"></i>
@@ -39,46 +39,132 @@
             </div>
         </nav>
         <div>
-            <h2><br><br><br></h2>
+        <h2><br><br><br></h2>
         </div>
-        <!-- ABOUT PAGE Made a collab CONTENT-->
+       
+        <!-- Course page content-->
         <div>
             <h1 id="aboutheading">
-                THE WANTAGH LACROSSE STATE CHAMPIONSHIP 
+                DONATE A LITTLE SOMETHING!
             </h1> 
-            <p style="font-size: 20px" id="abouttext">
-                20 years ago, Wantagh Lacrosse celebrated its first State Championship in program history (2001). <br> It not only marked the progress of the players and coaches on the 2001 team, but also the true comradery <br> of the people throughout the Wantagh Lacrosse Family. <br> <br>
-                <img id="Scott" class="img-fluid" src = "assets/img/ArticleEDITED.jpg">
-                <br> <br> Many people contributed to the program's success, including youth coaches which helped get players 
-                <br> interested in the game, older players who pushed the program forward inch-by-inch and inspired younger 
-                <br> players to get better and to take the next step, and also the parents who drove the players around and 
-                <br> cheered them on at games - to name a few among many more. 
-                <br> <br> The one constant through many of those incremental successes was Coach Cuiffo and the preservation of 
-                <br> Scott DeVerna's memory through the inspirational number 22 which continues to drive the program today. <br>
-            </p>
-            <br>
-            <img id="Scott" class="img-fluid" src = "assets/img/Scott.JPG">
-            <p style="font-size: 20px" id="abouttext"> <br> With all of the positivity that this program has brought to our lacrosse family, we are happy to announce 
-                <br> the Wantagh Lacrosse State Championship 20th Anniversary Golf Outing or "the Buddah Invitational" for 
-                <br> those who were (un)lucky enough to carry it.<br><br>
-            </p>
-            <img id="Scott" class="img-fluid" src = "assets/img/Team%20pic%202EDITED.jpg">
-            <br>
-            <div class="d-flex justify-content-center">    
-                <div class="embed-responsive embed-responsive-16by9">
-                <iframe id ="youtubevideos" width="420" height="315"
-                    src="https://youtube.com/embed/8PQIkNQmAfc">
-                </iframe>
-                </div>
-                <div class="embed-responsive embed-responsive-16by9">
-                <iframe id ="youtubevideos" width="420" height="315"
-                    src="https://youtube.com/embed/FHql46CWWaU">
-                </iframe>
-                </div>
-            </div>
-            <br>
         </div>
-        <!-- Footer-->
+        <br>
+        <div class="container">
+                    <p style="font-size: 24px" id="invitationtext"> 
+                         Every donation matters! Send a few bucks for the Scott & Maria DeVerna Scholarship Fund.  We have given the scholarship for  21 straight years... Let's make it #22 with everyone's help! </p>
+        </div>
+        <br>
+<!-- Paypal code 4-->
+<div id="smart-button-container">
+    <div style="text-align: center"><label for="description">Input amount you wish to donate in USD  </label><input type="text" name="descriptionInput" id="description" maxlength="127" value=""></div>
+      <p id="descriptionError" style="visibility: hidden; color:red; text-align: center;">Please enter a description</p>
+    <div id="invoiceidDiv" style="text-align: center; display: none;"><label for="invoiceid"> </label><input name="invoiceid" maxlength="127" type="text" id="invoiceid" value="" ></div>
+      <p id="invoiceidError" style="visibility: hidden; color:red; text-align: center;">Please enter an Invoice ID</p>
+    <div style="text-align: center; margin-top: 0.625rem;" id="paypal-button-container"></div>
+  </div>
+  <script src="https://www.paypal.com/sdk/js?client-id=sb&currency=USD" data-sdk-integration-source="button-factory"></script>
+  <script>
+  function initPayPalButton() {
+    var description = document.querySelector('#smart-button-container #description');
+    var amount = document.querySelector('#smart-button-container #amount');
+    var descriptionError = document.querySelector('#smart-button-container #descriptionError');
+    var priceError = document.querySelector('#smart-button-container #priceLabelError');
+    var invoiceid = document.querySelector('#smart-button-container #invoiceid');
+    var invoiceidError = document.querySelector('#smart-button-container #invoiceidError');
+    var invoiceidDiv = document.querySelector('#smart-button-container #invoiceidDiv');
+
+    var elArr = [description, amount];
+
+    if (invoiceidDiv.firstChild.innerHTML.length > 1) {
+      invoiceidDiv.style.display = "block";
+    }
+
+    var purchase_units = [];
+    purchase_units[0] = {};
+    purchase_units[0].amount = {};
+
+    function validate(event) {
+      return event.value.length > 0;
+    }
+
+    paypal.Buttons({
+      style: {
+        color: 'gold',
+        shape: 'rect',
+        label: 'pay',
+        layout: 'vertical',
+        
+      },
+
+      onInit: function (data, actions) {
+        actions.disable();
+
+        if(invoiceidDiv.style.display === "block") {
+          elArr.push(invoiceid);
+        }
+
+        elArr.forEach(function (item) {
+          item.addEventListener('keyup', function (event) {
+            var result = elArr.every(validate);
+            if (result) {
+              actions.enable();
+            } else {
+              actions.disable();
+            }
+          });
+        });
+      },
+
+      onClick: function () {
+        if (description.value.length < 1) {
+          descriptionError.style.visibility = "visible";
+        } else {
+          descriptionError.style.visibility = "hidden";
+        }
+
+        if (amount.value.length < 1) {
+          priceError.style.visibility = "visible";
+        } else {
+          priceError.style.visibility = "hidden";
+        }
+
+        if (invoiceid.value.length < 1 && invoiceidDiv.style.display === "block") {
+          invoiceidError.style.visibility = "visible";
+        } else {
+          invoiceidError.style.visibility = "hidden";
+        }
+
+        purchase_units[0].description = description.value;
+        purchase_units[0].amount.value = amount.value;
+
+        if(invoiceid.value !== '') {
+          purchase_units[0].invoice_id = invoiceid.value;
+        }
+      },
+
+      createOrder: function (data, actions) {
+        return actions.order.create({
+          purchase_units: purchase_units,
+        });
+      },
+
+      onApprove: function (data, actions) {
+        return actions.order.capture().then(function (details) {
+          alert('Transaction completed by ' + details.payer.name.given_name + '!');
+        });
+      },
+
+      onError: function (err) {
+        console.log(err);
+      }
+    }).render('#paypal-button-container');
+  }
+  initPayPalButton();
+  </script>
+                                  
+        <!-- banking details -->
+        <p style="font-size: 20px" id="abouttext" > <br> <br> <b>EFT BANKING DETAILS: </b> <br> Bank of America <br> 002004641340 <br> Routing: 021000322 <br> <br> <b>Venmo</b> @WantaghLaxAlumni     <br> <br> </p>
+            <!-- Footer-->
         <footer class="footer text-center">
             <div class="container">
                 <div class="row">
@@ -111,7 +197,7 @@
         <!-- Copyright Section-->
         <div class="copyright py-4 text-center text-white">
             <div class="container">
-                <small>Copyright © Cass & K 2020 </small>
+              <small>Copyright © Cass & K 2020 </small>
             </div>
         </div>
         <!-- Bootstrap core JS-->
