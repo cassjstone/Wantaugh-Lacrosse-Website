@@ -107,6 +107,24 @@ body {
   top: calc(var(--card-padding) + var(--radio-border-width));
 }
 
+@include media-breakpoint-up(sm) {
+  html {
+    font-size: 1.2rem;
+  }
+}
+
+@include media-breakpoint-up(md) {
+  html {
+    font-size: 1.4rem;
+  }
+}
+
+@include media-breakpoint-up(lg) {
+  html {
+    font-size: 1.6rem;
+  }
+}
+
 @supports(-webkit-appearance: none) or (-moz-appearance: none) { 
   .radio {
     -webkit-appearance: none;
@@ -144,54 +162,15 @@ body {
     }
   }
   
-  .card:hover .radio {
-    border-color: var(--color-dark-gray);
-    
-    &:checked {
-      border-color: var(--color-green);
-    }
-  }
-}
 
 .plan-details {
   border: var(--radio-border-width) solid var(--color-gray);
   border-radius: var(--card-radius);
-  cursor: pointer;
-  display: flex;
+   display: flex;
   flex-direction: column;
   padding: var(--card-padding);
   transition: border-color 0.2s ease-out;
 }
-
-.card:hover .plan-details {
-  border-color: var(--color-dark-gray);
-}
-
-.radio:checked ~ .plan-details {
-  border-color: var(--color-green);
-}
-
-.radio:focus ~ .plan-details {
-  box-shadow: 0 0 0 2px var(--color-dark-gray);
-}
-
-.radio:disabled ~ .plan-details {
-  color: var(--color-dark-gray);
-  cursor: default;
-}
-
-.radio:disabled ~ .plan-details .plan-type {
-  color: var(--color-dark-gray);
-}
-
-.card:hover .radio:disabled ~ .plan-details {
-  border-color: var(--color-gray);
-  box-shadow: none;
-}
-
-.card:hover .radio:disabled {
-    border-color: var(--color-gray);
-  }
 
 .plan-type {
   color: var(--color-green);
@@ -234,9 +213,6 @@ body {
     color:aliceblue;
     
 }
-#youtubevideos {
-    margin: 25px;
-}
 
 #wLOGOround {
     width: 100px;
@@ -275,9 +251,26 @@ body {
 }
 
 #aboutheading {
-     text-align: center;
+    text-align: center;     
+}
+
+@media screen and (min-width: 601px) {
+  #aboutheading {
     font-size: 50px;
-     
+  }
+  #youtubevideos {
+    padding: 25px;
+}
+}
+
+/* If the screen size is 600px wide or less, set the font-size of <div> to 30px */
+@media screen and (max-width: 600px) {
+  #aboutheading {
+    font-size: 20px;
+  }
+  #youtubevideos {
+    padding: 5px;
+}
 }
 
 #FBbutton {
